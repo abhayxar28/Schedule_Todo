@@ -30,7 +30,7 @@ export default function SignupComponent() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${process.env.BACKEND_URL}/signup`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, name, password }),
