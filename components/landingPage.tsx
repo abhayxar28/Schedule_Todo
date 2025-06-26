@@ -13,22 +13,19 @@ import Skeleton from "./ui/skeleton"
 export default function LandingPage() {
   const { status } = useSession()
   const router = useRouter()
-    const [, setRedirecting] = useState(false)
+  const [, setRedirecting] = useState(false)
 
-    useEffect(() => {
-        if (status === "authenticated") {
-        setRedirecting(true)
-        router.replace("/todos")
-        }
-    }, [status, router])
-
-    if (status === 'loading') {
-    return (
-      <Skeleton/>
-    )
+  useEffect(() => {
+    if (status === "authenticated") {
+      setRedirecting(true)
+      router.replace("/todos")
     }
+  }, [status, router])
+
+  if (status === "loading") return <Skeleton />
+
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-[#f3f0ff] via-[#f8f4ff] to-[#f4faff] text-gray-900">
+    <div className="min-h-screen w-full overflow-x-hidden no-scrollbar bg-gradient-to-br from-[#f3f0ff] via-[#f8f4ff] to-[#f4faff] text-gray-900">
       <header className="w-full px-6 py-4 flex justify-between items-center">
         <Link href="/">
           <h1 className="text-xl font-bold cursor-pointer">TaskVerse</h1>
