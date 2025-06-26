@@ -38,11 +38,14 @@ export default function SignupComponent() {
 
       const data = await res.json();
 
-      if (!res.ok) {
-        toast.error(data.error || "Signup failed");
-      } else {
+      if (res.status === 201) {
         toast.success("Signup successful!");
         router.push("/signin");
+      } else if (data.redirect) {
+        toast.info("User already exists.");
+        router.push(data.redirect);
+      } else {
+        toast.error(data.error || "Signup failed");
       }
     } catch (error) {
       console.error(error);
